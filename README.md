@@ -1,4 +1,4 @@
-# instagram-name-server
+# instagram-name-proxy
 ## Why
 Because the Instagram API really needs a /users/USERNAME/media/recent endpoint.
 
@@ -7,4 +7,4 @@ Because the Instagram API really needs a /users/USERNAME/media/recent endpoint.
 1. Grab your Instagram access token and `export INSTAGRAM_TOKEN=<your token>`
 2. `npm install`
 3. `foreman start`
-4. Basic usage is: `http://instagram-name-server-instance/<instagram_username>[?max_id=next_max_id]` where `max_id` is the [pagination parameter](http://instagram.com/developer/endpoints/) provided by Instagram. `next_max_id` is returned in a response from instagram-name-server
+4. Basic usage is: `http://instagram-name-proxy-instance/<instagram_username>`. All the [/media/recent](http://instagram.com/developer/endpoints/users/) parameters are supported. A common use case is pagination, where you should take the `next_max_id` field from a response and pass it in as a `max_id` query param.

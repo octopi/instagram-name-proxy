@@ -11,13 +11,12 @@ ig.use({
 
 app.get('/', function(req, res) {
   res.json(400, {
-    'error': 'Usage: ' + req.protocol + '://' + req.get('host') + '/<instagram_username>[?max_id=next_max_id]'
+    'error': 'Basic usage: ' + req.protocol + '://' + req.get('host') + '/<instagram_username>. All optional media/recent parameters supported.'
   });
 });
 
 app.get('/:username', function(req, res) {
   var igUsername = req.params.username,
-  igMaxId = req.query.max_id,
   igUserId;
 
   async.series([
@@ -43,7 +42,7 @@ app.get('/:username', function(req, res) {
     // grab da images
     function(callback) {
       ig.user_media_recent(igUserId,
-        {count: 20, max_id: igMaxId},
+        req.query,
         function(err, media, pagination, limit) {
           if (err) {
             callback(true, { 'error': err });
