@@ -11,7 +11,7 @@ ig.use({
 
 app.get('/', function(req, res) {
   res.json(400, {
-    'error': 'Usage: ' + req.get('host') + '/<instagram_username>'
+    'error': 'Usage: ' + req.protocol + '://' + req.get('host') + '/<instagram_username>[?max_id=next_max_id]'
   });
 });
 
